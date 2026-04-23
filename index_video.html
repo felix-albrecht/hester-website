@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hester Bigband</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Ahsing';
+      src: url('static/fonts/typogama-ahsing.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    :root {
+      --pink: #d63f8c;
+      --pink-light: #e85fa8;
+      --pink-dark: #a02870;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --dark-2: #1a1a1a;
+      --white: #f5f0ec;
+      --grey: #888;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(214, 63, 140, 0.15);
+      transition: padding 0.3s;
+    }
+
+    nav.scrolled {
+      padding: 0.8rem 3rem;
+    }
+
+    .nav-logo img {
+      height: 38px;
+      filter: brightness(1);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      transition: opacity 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--pink-light);
+    }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .nav-burger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-burger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-burger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--black);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: 'Ahsing', serif;
+      font-size: 2.2rem;
+      color: var(--white);
+      text-decoration: none;
+      font-style: italic;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--pink);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 3rem 5rem;
+      overflow: hidden;
+    }
+
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-video-wrap video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 177.78vh;
+      height: 100vh;
+      min-width: 100vw;
+      min-height: 56.25vw;
+      transform: translate(-50%, -50%);
+      filter: brightness(0.45);
+      object-fit: cover;
+    }
+
+    .mute-btn {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 3rem;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(10, 10, 10, 0.55);
+      border: 1px solid rgba(214, 63, 140, 0.4);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .mute-btn:hover {
+      background: rgba(214, 63, 140, 0.25);
+      border-color: var(--pink);
+    }
+
+    .mute-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.3) 50%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1.2rem;
+      border: 1px solid var(--pink-dark);
+      padding: 0.35rem 0.9rem;
+      border-radius: 2px;
+    }
+
+    .hero-title {
+      font-family: 'Ahsing', serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 900;
+      line-height: 0.92;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--pink);
+    }
+
+    .hero-sub {
+      margin-top: 1.8rem;
+      font-size: 1.05rem;
+      color: rgba(245, 240, 236, 0.65);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 2.4rem;
+      padding: 0.85rem 2.2rem;
+      background: var(--pink);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: var(--pink-dark);
+      transform: translateY(-2px);
+    }
+
+    .hero-cta svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.2rem;
+      right: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 236, 0.4);
+      writing-mode: vertical-lr;
+    }
+
+    .scroll-hint::before {
+      content: '';
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--pink), transparent);
+      display: block;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      padding: 7rem 3rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Ahsing', serif;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--pink);
+      margin: 2rem 0;
+    }
+
+    /* ── ÜBER UNS ── */
+    #ueber {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ueber-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ueber-text p {
+      color: rgba(245, 240, 236, 0.7);
+      line-height: 1.85;
+      font-size: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .ueber-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .ueber-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+      justify-items: start;
+    }
+
+    .ueber-images img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      filter: grayscale(20%);
+      transition: filter 0.4s, transform 0.4s;
+    }
+
+    .ueber-images img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    .ueber-images .img-tall {
+      grid-row: span 2;
+      aspect-ratio: auto;
+      height: 100%;
+      justify-self: start;
+      object-fit: cover;
+      object-position: left center;
+    }
+
+    /* ── KONZERTE ── */
+    #konzerte {
+      background: var(--black);
+    }
+
+    .konzerte-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .concert-list {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .concert-item {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      transition: border-color 0.2s;
+    }
+
+    .concert-item:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .concert-item:hover {
+      border-color: var(--pink-dark);
+    }
+
+    .concert-date {
+      font-family: 'Ahsing', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--pink);
+      min-width: 80px;
+      font-style: italic;
+    }
+
+    .concert-name {
+      font-size: 1.05rem;
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .konzerte-img {
+      position: sticky;
+      top: 120px;
+    }
+
+    .konzerte-img img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      image-orientation: from-image;
+    }
+
+
+    .concert-name a {
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(214, 63, 140, 0.4);
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .concert-name a:hover {
+      color: var(--pink);
+      border-bottom-color: var(--pink);
+    }
+
+    .past-year {
+      font-family: 'Ahsing', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--pink);
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .past-year:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ── PRESSETEXT ── */
+    #presse {
+      background: var(--dark);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .presse-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .presse-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+
+    .presse-lead {
+      font-family: 'Ahsing', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.2;
+      color: var(--white);
+    }
+
+    .presse-lead em {
+      color: var(--pink);
+      font-style: normal;
+    }
+
+    .presse-body p {
+      color: rgba(245, 240, 236, 0.65);
+      font-size: 1rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .presse-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 2rem;
+    }
+
+    .pillar {
+      background: var(--dark-2);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--pink);
+      transition: height 0.4s;
+    }
+
+    .pillar:hover::before {
+      height: 100%;
+    }
+
+    .pillar-title {
+      font-family: 'Ahsing', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .pillar p {
+      font-size: 0.9rem;
+      color: rgba(245, 240, 236, 0.6);
+      line-height: 1.75;
+    }
+
+    /* ── BESETZUNG ── */
+    #besetzung {
+      background: var(--black);
+    }
+
+    .besetzung-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .besetzung-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .member-count {
+      font-size: 5rem;
+      font-family: 'Ahsing', serif;
+      font-weight: 900;
+      color: var(--pink);
+      line-height: 1;
+      opacity: 0.25;
+    }
+
+    .besetzung-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem 2rem;
+    }
+
+    .section-group h4 {
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid rgba(214, 63, 140, 0.3);
+    }
+
+    .section-group ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .section-group ul li {
+      font-size: 0.9rem;
+      color: rgba(245, 240, 236, 0.7);
+      line-height: 1.4;
+    }
+
+    .section-group ul li strong {
+      color: var(--white);
+      font-weight: 500;
+      display: block;
+      font-size: 0.82rem;
+    }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding: 0 3rem 2rem;
+      scrollbar-width: none;
+    }
+
+    .gallery-strip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery-strip img {
+      height: 280px;
+      width: auto;
+      flex-shrink: 0;
+      object-fit: cover;
+      filter: saturate(80%);
+      transition: filter 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .gallery-strip img:hover {
+      filter: saturate(100%);
+      transform: scale(1.02);
+    }
+
+    /* ── CONTACT ── */
+    #kontakt {
+      background: var(--dark);
+      text-align: center;
+      padding: 8rem 3rem;
+    }
+
+    .kontakt-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .kontakt-inner .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .kontakt-inner p {
+      color: rgba(245, 240, 236, 0.6);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-3px);
+    }
+
+    .contact-link-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+    }
+
+    .contact-link-value {
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    .big-email {
+      display: inline-block;
+      font-family: 'Ahsing', serif;
+      font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+      font-style: italic;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 2px solid var(--pink);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .big-email:hover {
+      color: var(--pink);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer img {
+      height: 28px;
+      opacity: 0.6;
+    }
+
+    footer p {
+      font-size: 0.72rem;
+      color: rgba(245, 240, 236, 0.3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      font-size: 2rem;
+      color: var(--white);
+      cursor: pointer;
+      opacity: 0.7;
+      background: none;
+      border: none;
+      line-height: 1;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+      color: var(--pink);
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-burger {
+        display: flex;
+      }
+
+      #hero {
+        padding: 0 1.5rem 4rem;
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      .ueber-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .ueber-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .img-tall {
+        grid-row: span 1;
+        aspect-ratio: 3/4;
+        height: auto;
+      }
+
+      .konzerte-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .konzerte-img {
+        display: none;
+      }
+
+      .presse-header {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .presse-pillars {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+
+      .besetzung-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem 1.5rem;
+      }
+
+      .gallery-strip {
+        padding: 0 1.5rem 2rem;
+      }
+
+      .gallery-strip img {
+        height: 200px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero-title {
+        font-size: clamp(3rem, 15vw, 5rem);
+      }
+
+      .ueber-images {
+        grid-template-columns: 1fr;
+      }
+
+      .besetzung-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a class="nav-logo" href="#hero">
+      <img src="images/Logo.png" alt="Hester Bigband Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#ueber">Über uns</a></li>
+      <li><a href="#konzerte">Konzerte</a></li>
+      <li><a href="#presse">Pressetext</a></li>
+      <li><a href="#besetzung">Besetzung</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#ueber" onclick="toggleMenu()">Über uns</a>
+    <a href="#konzerte" onclick="toggleMenu()">Konzerte</a>
+    <a href="#presse" onclick="toggleMenu()">Presse</a>
+    <a href="#besetzung" onclick="toggleMenu()">Besetzung</a>
+    <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-video-wrap">
+      <video id="hero-video" autoplay muted loop playsinline>
+        <source src="images/trailer.mov" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Techno · Jazz · Bigband</span>
+      <h1 class="hero-title">Hester<br><em>Bigband</em></h1>
+      <p class="hero-sub">Wo die Power einer Bigband auf den Sound eines Clubs trifft — roh, improvisiert,
+        unverwechselbar.</p>
+      <a href="#kontakt" class="hero-cta">
+        Booking anfragen
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 8h10M9 4l4 4-4 4" />
+        </svg>
+      </a>
+    </div>
+    <button class="mute-btn" id="mute-btn" onclick="toggleMute()">
+      <svg id="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M11 5L6 9H2v6h4l5 4V5z" />
+        <line x1="23" y1="9" x2="17" y2="15" />
+        <line x1="17" y1="9" x2="23" y2="15" />
+      </svg>
+      <svg id="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+        style="display:none">
+        <path d="M11 5L6 9H2v6h4l5 4V5z" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+      </svg>
+      <span id="mute-label">Ton an</span>
+    </button>
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section id="ueber">
+    <div class="ueber-grid">
+      <div class="ueber-text fade-in">
+        <p class="section-label">Über uns</p>
+        <h2 class="section-title">Wer wir<br><em style="color:var(--pink)">sind.</em></h2>
+        <div class="divider"></div>
+        <p>Wir sind HESTER, eine innovative Techno-Bigband im deutschsprachigen Raum. Wir fusionieren die Power einer
+          Bigband mit dem Sound eines Clubs. Unsere Kompositionen sind der Beat, unsere Improvisationen die Extrawürze,
+          welche die Energie des Publikums mit unserer Musik verschmelzen.</p>
+        <p>Als wir uns als Ansammlung junger Menschen aus dem deutschsprachigen Raum im Landesjugendjazzorchester Bayern
+          kennen und lieben lernten, wurden wir zu einer eingespielten Konzertbesetzung. Bereits damals entwickelte sich
+          die ein oder andere unserer privaten Jam-Sessions in einen Rave — auch mal über die Nacht hinaus.</p>
+        <p>Wir wagten einen Schritt und gründeten uns — eine Bigband, in der wir uns auf Augenhöhe begegnen. Durch
+          unsere vielfältige, geschlechtsgemischte Besetzung gestalten wir den Wandel in der deutschen Jazz-Szene mit
+          und vertreten sichtbar FLINTA*-Personen in allen Gruppen.</p>
+      </div>
+      <div class="ueber-images fade-in">
+        <img src="images/Pascale.jpg" alt="Hester Bigband Gruppenportrait" style="grid-column:1; grid-row:1;" />
+        <img src="images/Nicki.jpg" alt="Hester Bigband Portrait"
+          style="grid-column:2; grid-row:1 / span 2; aspect-ratio:auto; height:100%; object-position: left center;"
+          class="img-tall" />
+        <img src="images/Silas2.jpg" alt="Hester Augsburg" style="grid-column:1; grid-row:2;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip">
+    <img src="images/Saal.jpg" alt="Hester Heizungskeller" onclick="openLightbox(this.src)" />
+    <img src="images/Nico2.jpg" alt="Hester Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/Keller.jpg" alt="Hester Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/Michi.jpg" alt="Hester Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/Silas1.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" />
+    <img src="images/Treppe2.jpg" alt="Hester Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/Treppe1.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" />
+    <img src="images/Voices.jpg" alt="Hester Regensburg" onclick="openLightbox(this.src)" />
+  </div>
+
+  <!-- KONZERTE -->
+  <section id="konzerte">
+    <div class="konzerte-inner">
+      <div class="fade-in">
+        <p class="section-label">Termine</p>
+        <h2 class="section-title">Konzerte<br><em style="color:var(--pink)">2026.</em></h2>
+        <div class="divider"></div>
+
+        <div class="concert-list">
+          <div class="concert-item">
+            <span class="concert-date">09.05.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.neustadtkultur.de/neustadtnacht/hester/">Neustadtnacht</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">13.05.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.kunstundkulturbastei.de/news/#section-content-with-grid-5619f877-8b29-4e70-9ede-a8884e9bc90e">Ingolstadt</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">27.06.</span>
+            <span class="concert-name"><a target="_blank" href="https://www.houseofmusic.berlin">House Of Music
+                Berlin</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">18.07.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.kultur-schwabmuenchen.de/event/stadtfest-2026/">Schwabmünchen Stadtfest</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">25.07.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.kulturspektakel.de/lineup/2026/hester">Kulturspektakel
+                Gauting</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">22.10.</span>
+            <span class="concert-name"><a target="_blank" href="https://milla-club.de">Milla München</a></span>
+          </div>
+        </div>
+
+        <p class="past-year" style="margin-top:3rem">2025</p>
+        <div class="concert-list">
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Kemptener Jazzfrühling</span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Jazzweekend Regensburg</span>
+          </div>
+        </div>
+
+        <p class="past-year">2024</p>
+        <div class="concert-list">
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Clubnacht im Cityclub Augsburg</span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Landesgartenschau in Wangen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="konzerte-img fade-in">
+        <img src="images/Nico1.jpg" alt="Hester on Stage" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESSE -->
+  <section id="presse">
+    <div class="presse-inner">
+      <div class="presse-header fade-in">
+        <div>
+          <p class="section-label">Pressetext</p>
+          <h2 class="section-title">Was uns<br><em style="color:var(--pink)">ausmacht.</em></h2>
+          <div class="divider"></div>
+        </div>
+        <p class="presse-lead">
+          <em>Techno</em> meets Jazz-BigBand — die pulsierende Rhythmusgruppe als Herzstück.
+        </p>
+      </div>
+
+      <div class="presse-pillars fade-in">
+        <div class="pillar">
+          <p class="pillar-title">Der Beat</p>
+          <p>Hester lässt Bläsersection und Vokalensemble mit digital-analogen Beats verschmelzen und lädt euch zum Rave
+            ein.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-title">Organische Improvisation.</p>
+          <p>Jeder Auftritt ist ein Raum für neue Wege zum Drop. Hester spielt mit Techno-Elementen und entwickelt aus
+            der Energie des Moments eine ganz eigene Clubatmosphäre. Jedes Mal anders.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-title">Soundflächen.</p>
+          <p>Die Eigenkompositionen erzeugen eine sphärische Stimmung. Durch die Ausdrucksstärke einer ganzen Big Band
+            versorgt euch Hester mit einer ordentlichen Portion Groove.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BESETZUNG -->
+  <section id="besetzung">
+    <div class="besetzung-inner">
+      <div class="besetzung-header fade-in">
+        <div>
+          <p class="section-label">Lineup</p>
+          <h2 class="section-title">Besetzung.</h2>
+        </div>
+        <div class="member-count">~20</div>
+      </div>
+
+      <div class="besetzung-grid fade-in">
+        <div class="section-group">
+          <h4>Rhythmsection</h4>
+          <ul>
+            <li><strong>Drums</strong> Silas</li>
+            <li><strong>E-Drums</strong> Leon</li>
+            <li><strong>E-Piano</strong> Nicki</li>
+            <li><strong>E-Bass</strong> Len</li>
+            <li><strong>E-Gitarre</strong> Daniel</li>
+          </ul>
+        </div>
+
+        <div class="section-group">
+          <h4>Vocalensemble</h4>
+          <ul>
+            <li><strong>Sopran</strong> Amelie</li>
+            <li><strong>Alt</strong> Lea</li>
+            <li><strong>Tenor</strong> Laura</li>
+            <li><strong>Bass</strong> Felix</li>
+          </ul>
+        </div>
+
+        <div class="section-group">
+          <h4>Bläsersection</h4>
+          <ul>
+            <li><strong>Trompete</strong> Manu, Raffi</li>
+            <li><strong>Posaune</strong> Marie, Fabius</li>
+            <li><strong>Bassposaune</strong> Fabian</li>
+            <li><strong>Querflöte</strong> Luna</li>
+            <li><strong>Sopransaxophon</strong> Simon</li>
+            <li><strong>Altsaxophon</strong> Pascale</li>
+            <li><strong>Tenorsaxophon</strong> Jonas, Linus</li>
+            <li><strong>Baritonsaxophon</strong> Linda</li>
+            <li><strong>Tenorsax mit Effekten</strong> Michi</li>
+          </ul>
+        </div>
+
+        <div class="section-group">
+          <h4>MD &amp; Technik</h4>
+          <ul>
+            <li><strong>Mus. Leitung, Moderation</strong> Nico</li>
+            <li><strong>Techniker</strong> Henne</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="kontakt-inner fade-in">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title">Lass uns<br><em style="color:var(--pink)">spielen.</em></h2>
+      <div class="divider" style="margin:2rem auto;"></div>
+      <p>Booking-Anfragen, Presseinfos oder einfach Hallo — wir freuen uns von euch zu hören.</p>
+      <a class="big-email" href="mailto:booking@hester.band">booking@hester.band</a>
+      <div class="contact-links" style="margin-top:3rem;">
+        <a class="contact-link" href="https://hester.band" target="_blank">
+          <span class="contact-link-label">Website</span>
+          <span class="contact-link-value">hester.band</span>
+        </a>
+        <a class="contact-link" href="https://instagram.com/hester_bigband" target="_blank">
+          <span class="contact-link-label">Instagram</span>
+          <span class="contact-link-value">@hester_bigband</span>
+        </a>
+        <a class="contact-link" href="https://youtube.com/@Hester-band" target="_blank">
+          <span class="contact-link-label">YouTube</span>
+          <span class="contact-link-value">@Hester-band</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="images/Logo.png" alt="Hester Bigband" />
+    <p>© Hester Bigband 2026 · Alle Rechte vorbehalten</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Video mute toggle
+    let isMuted = true;
+
+    function toggleMute() {
+      const video = document.getElementById('hero-video');
+      isMuted = !isMuted;
+      video.muted = isMuted;
+      document.getElementById('icon-muted').style.display = isMuted ? 'block' : 'none';
+      document.getElementById('icon-unmuted').style.display = isMuted ? 'none' : 'block';
+      document.getElementById('mute-label').textContent = isMuted ? 'Ton an' : 'Ton aus';
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      const burger = document.getElementById('burger');
+      const menu = document.getElementById('mobile-menu');
+      burger.classList.toggle('open');
+      menu.classList.toggle('open');
+      document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i * 0.1) + 's';
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Lightbox
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+
+</html>
