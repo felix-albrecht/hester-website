@@ -377,30 +377,29 @@ section {
 .ueber-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 300px;
     gap: .8rem;
-    justify-items: start
 }
 
 .ueber-images img {
     width: 100%;
-    aspect-ratio: 3/4;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
     filter: grayscale(20%);
-    transition: filter 0.4s, transform 0.4s
+    transition: filter 0.4s, transform 0.4s;
+    overflow: hidden;
 }
 
 .ueber-images img:hover {
     filter: grayscale(0%);
-    transform: scale(1.02)
+    transform: scale(1.02);
 }
 
 .ueber-images .img-tall {
-    grid-row: span 2;
-    aspect-ratio: auto;
-    height: 100%;
-    justify-self: start;
-    object-fit: cover;
-    object-position: left center
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    object-position: left center;
 }
 
 #konzerte {
@@ -873,14 +872,13 @@ footer p {
     }
 
     .ueber-images {
-        display: grid;
-        grid-template-columns: 1fr 1fr
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 220px;
     }
 
-    .img-tall {
-        grid-row: span 1;
-        aspect-ratio: 3/4;
-        height: auto
+    .ueber-images .img-tall {
+        grid-column: 2;
+        grid-row: 1 / span 2;
     }
 
     .konzerte-inner {
@@ -928,7 +926,13 @@ footer p {
     }
 
     .ueber-images {
-        grid-template-columns: 1fr
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 280px 280px;
+    }
+
+    .ueber-images .img-tall {
+        grid-column: 2;
+        grid-row: 1 / span 2;
     }
 
     .besetzung-grid {
