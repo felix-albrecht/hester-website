@@ -22,6 +22,29 @@ function toggleMute() {
     setMuted(!isMuted);
 }
 
+// Keep mute button above footer when scrolled down
+const muteBtn = document.getElementById('mute-btn');
+const footer = document.querySelector('footer');
+
+function updateMuteBtnPosition() {
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    const btnHeight = muteBtn.offsetHeight;
+    const defaultBottom = window.innerWidth <= 900 ? 24 : 35; // matches your CSS rem values in px
+
+    if (footerTop < windowHeight) {
+        // footer is visible — push button up above it
+        const overlap = windowHeight - footerTop;
+        muteBtn.style.bottom = (overlap + 12) + 'px';
+    } else {
+        muteBtn.style.bottom = defaultBottom + 'px';
+    }
+}
+
+window.addEventListener('scroll', updateMuteBtnPosition, { passive: true });
+window.addEventListener('resize', updateMuteBtnPosition);
+updateMuteBtnPosition();
+
 // Mobile menu
 function toggleMenu() {
     const burger = document.getElementById('burger');

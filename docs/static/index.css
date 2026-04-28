@@ -862,6 +862,11 @@ footer p {
         padding: 0 1.5rem 4rem
     }
 
+    .mute-btn {
+        left: 1.5rem;
+        bottom: 1.5rem;
+    }
+
     section {
         padding: 5rem 1.5rem
     }
