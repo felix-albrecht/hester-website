@@ -225,6 +225,13 @@ nav.scrolled {
     height: 16px
 }
 
+.hero-banner {
+    width: min(1000px, 90vw);
+    height: auto;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
 .scroll-hint {
     position: absolute;
     bottom: 2.2rem;
