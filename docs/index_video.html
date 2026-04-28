@@ -146,7 +146,8 @@
                     </div>
                     <div class="concert-item">
                         <span class="concert-date">27.06.</span>
-                        <span class="concert-name"><a target="_blank" href="https://www.houseofmusic.berlin">House Of
+                        <span class="concert-name"><a target="_blank" href="https://www.houseofmusic.berlin">House
+                                Of
                                 Music
                                 Berlin</a></span>
                     </div>
@@ -229,7 +230,8 @@
                 </div>
                 <div class="pillar">
                     <p class="pillar-title">Soundflächen.</p>
-                    <p>Die Eigenkompositionen erzeugen eine sphärische Stimmung. Durch die Ausdrucksstärke einer ganzen
+                    <p>Die Eigenkompositionen erzeugen eine sphärische Stimmung. Durch die Ausdrucksstärke einer
+                        ganzen
                         Big Band
                         versorgt euch Hester mit einer ordentlichen Portion Groove.</p>
                 </div>
@@ -330,7 +332,17 @@
     <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+        <button class="lightbox-arrow lightbox-arrow-left" onclick="event.stopPropagation(); lightboxNav(-1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M15 18l-6-6 6-6" />
+            </svg>
+        </button>
         <img id="lightbox-img" src="" alt="" />
+        <button class="lightbox-arrow lightbox-arrow-right" onclick="event.stopPropagation(); lightboxNav(1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M9 18l6-6-6-6" />
+            </svg>
+        </button>
     </div>
 
     <script defer src="static/index_video.js"></script>
