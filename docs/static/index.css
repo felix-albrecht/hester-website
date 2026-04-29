@@ -834,6 +834,46 @@ footer p {
     right: 2rem;
 }
 
+.concert-gallery-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-left: auto;
+    background: none;
+    border: 1px solid rgb(214 63 140 / .3);
+    color: var(--grey);
+    font-family: 'Inter', sans-serif;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .35rem .75rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    flex-shrink: 0;
+}
+
+.concert-gallery-btn:hover {
+    border-color: var(--pink);
+    color: var(--pink-light);
+}
+
+.concert-gallery-btn svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: .68rem;
+    letter-spacing: .15em;
+    color: rgb(245 240 236 / .4);
+    z-index: 201;
+}
+
 .fade-in {
     opacity: 0;
     transform: translateY(28px);

@@ -1,5 +1,6 @@
 const nav = document.getElementById('main-nav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60) });
+
 const heroBg = document.getElementById('hero-bg');
 setTimeout(() => heroBg.classList.add('loaded'), 100);
 
@@ -15,21 +16,46 @@ const observer = new IntersectionObserver((entries) => { entries.forEach((e, i) 
 const galleryImgs = Array.from(document.querySelectorAll('.gallery-strip img'));
 let currentLightboxIndex = 0;
 
+// Event gallery data — add filenames for each event folder
+async function openEventGallery(folder) {
+    try {
+        const res = await fetch(folder + '/index.json');
+        const filenames = await res.json();
+        if (!filenames || filenames.length === 0) return;
+        eventGalleryImages = filenames.map(f => folder + '/' + f);
+        currentLightboxIndex = 0;
+        showLightboxImage(eventGalleryImages[0]);
+        updateLightboxCounter();
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    } catch (e) {
+        console.warn('Could not load gallery for', folder, e);
+    }
+}
+
+let eventGalleryImages = [];
+
 function openLightbox(src) {
+    // build gallery from the strip images
+    eventGalleryImages = galleryImgs.map(img => img.src);
     currentLightboxIndex = galleryImgs.findIndex(img => img.src === src);
-    document.getElementById('lightbox-img').src = src;
+    showLightboxImage(eventGalleryImages[currentLightboxIndex]);
+    updateLightboxCounter();
     document.getElementById('lightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
+}
+
+function lightboxNav(direction) {
+    if (eventGalleryImages.length === 0) return;
+    currentLightboxIndex = (currentLightboxIndex + direction + eventGalleryImages.length) % eventGalleryImages.length;
+    showLightboxImage(eventGalleryImages[currentLightboxIndex]);
+    updateLightboxCounter();
 }
 
 function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
-}
-
-function lightboxNav(direction) {
-    currentLightboxIndex = (currentLightboxIndex + direction + galleryImgs.length) % galleryImgs.length;
-    document.getElementById('lightbox-img').src = galleryImgs[currentLightboxIndex].src;
+    eventGalleryImages = [];
 }
 
 document.addEventListener('keydown', e => {
@@ -53,5 +79,18 @@ strip.addEventListener('scroll', () => {
 
 // Start in the middle so both directions work immediately
 strip.scrollLeft = strip.scrollWidth / 2;
-function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = '' }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); })
+
+function showLightboxImage(src) {
+    document.getElementById('lightbox-img').src = src;
+}
+
+function updateLightboxCounter() {
+    let counter = document.getElementById('lightbox-counter');
+    if (!counter) {
+        counter = document.createElement('div');
+        counter.id = 'lightbox-counter';
+        counter.className = 'lightbox-counter';
+        document.getElementById('lightbox').appendChild(counter);
+    }
+    counter.textContent = (currentLightboxIndex + 1) + ' / ' + eventGalleryImages.length;
+}
