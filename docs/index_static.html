@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hester Bigband</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/index.css" />
+  <link rel="icon" type="image/png" href="images/Logo.png" />
+  <link rel="apple-touch-icon" href="images/Logo.png" />
+  <meta property="og:image" content="images/Logo.png" />
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a class="nav-logo" href="#hero">
+      <img src="images/Logo.png" alt="Hester Bigband Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#ueber">Über uns</a></li>
+      <li><a href="#konzerte">Konzerte</a></li>
+      <li><a href="#presse">Pressetext</a></li>
+      <li><a href="#besetzung">Besetzung</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="nav-burger" id="burger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#ueber" onclick="toggleMenu()">Über uns</a>
+    <a href="#konzerte" onclick="toggleMenu()">Konzerte</a>
+    <a href="#presse" onclick="toggleMenu()">Presse</a>
+    <a href="#besetzung" onclick="toggleMenu()">Besetzung</a>
+    <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Techno · Jazz · Bigband</span>
+      <img src="images/Hester_Banner_contour.png" alt="Hester Bigband" class="hero-banner" />
+      <p class="hero-sub">Wo die Power einer Bigband auf den Sound eines Clubs trifft — roh, improvisiert,
+        unverwechselbar.</p>
+      <a href="#kontakt" class="hero-cta">
+        Booking anfragen
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 8h10M9 4l4 4-4 4" />
+        </svg>
+      </a>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section id="ueber">
+    <div class="ueber-grid">
+      <div class="ueber-text fade-in">
+        <p class="section-label">Über uns</p>
+        <h2 class="section-title">Wer wir<br><em style="color:var(--pink)">sind.</em></h2>
+        <div class="divider"></div>
+        <p>Wir sind HESTER, eine innovative Techno-Bigband im deutschsprachigen Raum. Wir fusionieren die Power einer
+          Bigband mit dem Sound eines Clubs. Unsere Kompositionen sind der Beat, unsere Improvisationen die Extrawürze,
+          welche die Energie des Publikums mit unserer Musik verschmelzen.</p>
+        <p>Als wir uns als Ansammlung junger Menschen aus dem deutschsprachigen Raum im Landesjugendjazzorchester Bayern
+          kennen und lieben lernten, wurden wir zu einer eingespielten Konzertbesetzung. Bereits damals entwickelte sich
+          die ein oder andere unserer privaten Jam-Sessions in einen Rave — auch mal über die Nacht hinaus.</p>
+        <p>Wir wagten einen Schritt und gründeten uns — eine Bigband, in der wir uns auf Augenhöhe begegnen. Durch
+          unsere vielfältige, geschlechtsgemischte Besetzung gestalten wir den Wandel in der deutschen Jazz-Szene mit
+          und vertreten sichtbar FLINTA*-Personen in allen Gruppen.</p>
+      </div>
+      <div class="ueber-images fade-in">
+        <img src="images/regensburg25/Pascale.jpg" alt="Pascale Regensburg" />
+        <img src="images/regensburg25/Nicki.jpg" alt="Nicki Regensburg" class="img-tall" />
+        <img src="images/regensburg25/Silas2.jpg" alt="Silas Regensburg" />
+      </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip">
+    <img src="images/Saal.jpg" alt="Hester Konzertsaal" onclick="openLightbox(this.src)" />
+    <img src="images/regensburg25/Nico2.jpg" alt="Nico Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/Keller.jpg" alt="Hester Heizungskeller" onclick="openLightbox(this.src)" />
+    <img src="images/regensburg25/Michi.jpg" alt="Michi Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/augsburg24/Silas1.jpg" alt="Silas Augsburg" onclick="openLightbox(this.src)" />
+    <img src="images/augsburg24/Treppe2.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" />
+    <img src="images/augsburg24/Treppe1.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" />
+    <img src="images/regensburg25/Voices.jpg" alt="Vocal Section Regensburg" onclick="openLightbox(this.src)" />
+    <img src="images/augsburg24/Noten.jpg" alt="Noten Augsburg" onclick="openLightbox(this.src)" />
+  </div>
+
+  <!-- KONZERTE -->
+  <section id="konzerte">
+    <div class="konzerte-inner">
+      <div class="fade-in">
+        <p class="section-label">Termine</p>
+        <h2 class="section-title">Konzerte<br><em style="color:var(--pink)">2026.</em></h2>
+        <div class="divider"></div>
+
+        <div class="concert-list">
+          <div class="concert-item">
+              <span class="concert-date">09.05.</span>
+              <span class="concert-name"><a target="_blank"
+                      href="https://www.neustadtkultur.de/neustadtnacht/hester/">Neustadtnacht</a></span>
+              <button class="concert-gallery-btn" onclick="openEventGallery('images/neustadt26')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
+                  Fotos
+              </button>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">13.05.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.kunstundkulturbastei.de/news/#section-content-with-grid-5619f877-8b29-4e70-9ede-a8884e9bc90e">Ingolstadt</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">27.06.</span>
+            <span class="concert-name"><a target="_blank" href="https://www.houseofmusic.berlin">House Of Music
+                Berlin</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">19.07.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.kultur-schwabmuenchen.de/event/stadtfest-2026/">Schwabmünchen Stadtfest</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">25.07.</span>
+            <span class="concert-name"><a target="_blank"
+                href="https://www.kulturspektakel.de/lineup/2026/hester">Kulturspektakel
+                Gauting</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">22.10.</span>
+            <span class="concert-name"><a target="_blank" href="https://milla-club.de">Milla München</a></span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date">23.10.</span>
+            <span class="concert-name"><a target="_blank" href="https://www.degginger.de">Degginger
+                Regensburg</a></span>
+          </div>
+        </div>
+
+        <p class="past-year" style="margin-top:3rem">2025</p>
+        <div class="concert-list">
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Kemptener Jazzfrühling</span>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Jazzweekend Regensburg</span>
+            <button class="concert-gallery-btn" onclick="openEventGallery('images/regensburg25')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+              Fotos
+            </button>
+          </div>
+        </div>
+
+        <p class="past-year">2024</p>
+        <div class="concert-list">
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Clubnacht im Cityclub Augsburg</span>
+            <button class="concert-gallery-btn" onclick="openEventGallery('images/augsburg24')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+              Fotos
+            </button>
+          </div>
+          <div class="concert-item">
+            <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
+            <span class="concert-name" style="color:var(--grey)">Landesgartenschau in Wangen</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="konzerte-img fade-in">
+        <img src="images/regensburg25/Nico1.jpg" alt="Hester on Stage" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESSE -->
+  <section id="presse">
+    <div class="presse-inner">
+      <div class="presse-header fade-in">
+        <div>
+          <p class="section-label">Pressetext</p>
+          <h2 class="section-title">Was uns<br><em style="color:var(--pink)">ausmacht.</em></h2>
+          <div class="divider"></div>
+        </div>
+        <p class="presse-lead">
+          <em>Techno</em> meets Jazz-BigBand — die pulsierende Rhythmusgruppe als Herzstück.
+        </p>
+      </div>
+
+      <div class="presse-pillars fade-in">
+        <div class="pillar">
+          <p class="pillar-title">Der Beat</p>
+          <p>Hester lässt Bläsersection und Vokalensemble mit digital-analogen Beats verschmelzen und lädt euch zum Rave
+            ein.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-title">Organische Improvisation.</p>
+          <p>Jeder Auftritt ist ein Raum für neue Wege zum Drop. Hester spielt mit Techno-Elementen und entwickelt aus
+            der Energie des Moments eine ganz eigene Clubatmosphäre. Jedes Mal anders.</p>
+        </div>
+        <div class="pillar">
+          <p class="pillar-title">Soundflächen.</p>
+          <p>Die Eigenkompositionen erzeugen eine sphärische Stimmung. Durch die Ausdrucksstärke einer ganzen Big Band
+            versorgt euch Hester mit einer ordentlichen Portion Groove.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BESETZUNG -->
+  <section id="besetzung">
+    <div class="besetzung-inner">
+      <div class="besetzung-header fade-in">
+        <div>
+          <p class="section-label">Lineup</p>
+          <h2 class="section-title">Besetzung.</h2>
+        </div>
+        <div class="member-count">~20</div>
+      </div>
+
+      <div class="besetzung-grid fade-in">
+        <div class="section-group">
+          <h4>Rhythmsection</h4>
+          <ul>
+            <li><strong>Drums</strong> Silas</li>
+            <li><strong>E-Drums</strong> Leon</li>
+            <li><strong>E-Piano</strong> Nicki</li>
+            <li><strong>E-Bass</strong> Len</li>
+            <li><strong>E-Gitarre</strong> Daniel</li>
+          </ul>
+        </div>
+
+        <div class="section-group">
+          <h4>Vocalensemble</h4>
+          <ul>
+            <li><strong>Sopran</strong> Amelie</li>
+            <li><strong>Alt</strong> Lea</li>
+            <li><strong>Tenor</strong> Laura</li>
+            <li><strong>Bass</strong> Felix</li>
+          </ul>
+        </div>
+
+        <div class="section-group">
+          <h4>Bläsersection</h4>
+          <ul>
+            <li><strong>Trompete</strong> Manu, Raffi</li>
+            <li><strong>Posaune</strong> Marie, Fabius</li>
+            <li><strong>Bassposaune</strong> Fabian</li>
+            <li><strong>Querflöte</strong> Luna</li>
+            <li><strong>Sopransaxophon</strong> Simon</li>
+            <li><strong>Altsaxophon</strong> Pascale</li>
+            <li><strong>Tenorsaxophon</strong> Jonas, Linus</li>
+            <li><strong>Baritonsaxophon</strong> Linda</li>
+            <li><strong>Tenorsax mit Effekten</strong> Michi</li>
+          </ul>
+        </div>
+
+        <div class="section-group">
+          <h4>MD &amp; Technik</h4>
+          <ul>
+            <li><strong>Mus. Leitung, Moderation</strong> Nico</li>
+            <li><strong>Techniker</strong> Henne</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="kontakt-inner fade-in">
+      <p class="section-label">Get in touch</p>
+      <h2 class="section-title">Lass uns<br><em style="color:var(--pink)">spielen.</em></h2>
+      <div class="divider" style="margin:2rem auto;"></div>
+      <p>Booking-Anfragen, Presseinfos oder einfach Hallo — wir freuen uns von euch zu hören.</p>
+      <a class="big-email" href="mailto:booking@hester.band">booking@hester.band</a>
+      <div class="contact-links" style="margin-top:3rem;">
+        <a class="contact-link" href="https://hester.band" target="_blank">
+          <span class="contact-link-label">linktree</span>
+          <span class="contact-link-value">hester.band</span>
+        </a>
+        <a class="contact-link" href="https://instagram.com/hester_bigband" target="_blank">
+          <span class="contact-link-label">Instagram</span>
+          <span class="contact-link-value">@hester_bigband</span>
+        </a>
+        <a class="contact-link" href="https://youtube.com/@Hester-band" target="_blank">
+          <span class="contact-link-label">YouTube</span>
+          <span class="contact-link-value">@Hester-band</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="images/Logo.png" alt="Hester Bigband" />
+    <p>© Hester Bigband 2026 · Alle Rechte vorbehalten</p>
+    <a href="impressum.html"
+      style="font-size:.72rem; color:rgb(245 240 236 / .3); letter-spacing:.05em; text-decoration:none; transition:color 0.2s;"
+      onmouseover="this.style.color='var(--pink)'" onmouseout="this.style.color='rgb(245 240 236 / .3)'">Impressum</a>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
+    <button class="lightbox-arrow lightbox-arrow-left" onclick="event.stopPropagation(); lightboxNav(-1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+    <img id="lightbox-img" src="" alt="" />
+    <button class="lightbox-arrow lightbox-arrow-right" onclick="event.stopPropagation(); lightboxNav(1)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+  </div>
+
+  <script defer src="static/index.js"></script>
+
+</body>
+
+</html>

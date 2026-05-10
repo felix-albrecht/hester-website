@@ -131,7 +131,7 @@ nav.scrolled {
 }
 
 .mobile-menu a {
-    font-family: 'Ahsing', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2.2rem;
     color: var(--white);
     text-decoration: none;
@@ -178,7 +178,7 @@ nav.scrolled {
 }
 
 .hero-title {
-    font-family: 'Ahsing', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(4rem, 12vw, 10rem);
     font-weight: 900;
     line-height: .92;
@@ -334,7 +334,7 @@ section {
 }
 
 .section-title {
-    font-family: 'Ahsing', serif;
+    font-family: 'Playfair Display', serif;
     font-size: clamp(2.8rem, 7vw, 6rem);
     font-weight: 900;
     line-height: 1;
