@@ -1,11 +1,3 @@
-@font-face {
-    font-family: 'Ahsing';
-    src: url(fonts/typogama-ahsing.otf) format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap
-}
-
 :root {
     --pink: #d63f8c;
     --pink-light: #e85fa8;
@@ -109,6 +101,21 @@ nav.scrolled {
 
 .nav-burger.open span:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg)
+}
+
+.mobile-social {
+    display: flex;
+    gap: 1.8rem;
+    margin-top: 1rem;
+}
+
+.mobile-social .nav-social-link {
+    opacity: .6;
+}
+
+.mobile-social .nav-social-link svg {
+    width: 26px;
+    height: 26px;
 }
 
 .nav-social {
@@ -933,12 +940,15 @@ footer p {
         display: flex
     }
 
+    .nav-social { display: none; }
+
     #hero {
         padding: 0 1.5rem 4rem
     }
 
     .mute-btn {
-        left: 1.5rem;
+        right: 1.5rem;
+        left: auto;
         bottom: 1.5rem;
     }
 

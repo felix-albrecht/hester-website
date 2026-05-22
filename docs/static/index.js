@@ -11,10 +11,20 @@ let userUnmuted = false; // tracks if user deliberately turned sound on
 function setMuted(muted) {
     const video = document.getElementById('hero-video');
     if (!video) return;
-    video.muted = isMuted;
-    document.getElementById('icon-muted').style.display = isMuted ? 'block' : 'none';
-    document.getElementById('icon-unmuted').style.display = isMuted ? 'none' : 'block';
-    document.getElementById('mute-label').textContent = isMuted ? 'Ton an' : 'Ton aus';
+    isMuted = muted;
+    video.muted = muted;
+    document.getElementById('icon-muted').style.display = muted ? 'block' : 'none';
+    document.getElementById('icon-unmuted').style.display = muted ? 'none' : 'block';
+    document.getElementById('mute-label').textContent = muted ? 'Ton an' : 'Ton aus';
+}
+
+const heroVideo = document.getElementById('hero-video');
+if (heroVideo) {
+    heroVideo.addEventListener('ended', () => {
+        setMuted(true);
+        heroVideo.currentTime = 0;
+        heroVideo.play();
+    });
 }
 
 function toggleMute() {
