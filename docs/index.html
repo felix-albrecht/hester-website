@@ -31,6 +31,36 @@
             <li><a href="#besetzung">Besetzung</a></li>
             <li><a href="#kontakt">Kontakt</a></li>
         </ul>
+        <div class="nav-social">
+            <a class="nav-social-link instagram" href="https://instagram.com/hester_bigband" target="_blank" title="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+                </svg>
+            </a>
+            <a class="nav-social-link spotify" href="https://open.spotify.com/artist/6nxAABMZhCO0QtxF3NadpL" target="_blank" title="Spotify">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M7.5 14.5c2.8-1 5.7-.8 8 .7"/>
+                    <path d="M7 11.5c3.3-1.2 7-1 9.5.8"/>
+                    <path d="M7.5 8.5c3.8-1.3 7.8-.9 10.5 1.2"/>
+                </svg>
+            </a>
+            <a class="nav-social-link tidal" href="https://tidal.com/artist/77012800" target="_blank" title="Tidal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M4 10c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0"/>
+                    <path d="M4 14c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0"/>
+                </svg>
+            </a>
+            <a class="nav-social-link apple" href="https://music.apple.com/de/artist/hester-bigband/1889553510" target="_blank" title="Apple Music">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M9 18V5l12-2v13"/>
+                    <circle cx="6" cy="18" r="3"/>
+                    <circle cx="18" cy="16" r="3"/>
+                </svg>
+            </a>
+        </div>
         <div class="nav-burger" id="burger" onclick="toggleMenu()">
             <span></span><span></span><span></span>
         </div>
@@ -88,22 +118,16 @@
                 <p class="section-label">Über uns</p>
                 <h2 class="section-title">Wer wir<br><em style="color:var(--pink)">sind.</em></h2>
                 <div class="divider"></div>
-                <p>Wir sind HESTER, eine innovative Techno-Bigband im deutschsprachigen Raum. Wir fusionieren die Power
-                    einer
-                    Bigband mit dem Sound eines Clubs. Unsere Kompositionen sind der Beat, unsere Improvisationen die
-                    Extrawürze,
-                    welche die Energie des Publikums mit unserer Musik verschmelzen.</p>
-                <p>Als wir uns als Ansammlung junger Menschen aus dem deutschsprachigen Raum im
-                    Landesjugendjazzorchester Bayern
-                    kennen und lieben lernten, wurden wir zu einer eingespielten Konzertbesetzung. Bereits damals
-                    entwickelte sich
-                    die ein oder andere unserer privaten Jam-Sessions in einen Rave — auch mal über die Nacht hinaus.
+                <p>Wir sind HESTER: Zwanzig Menschen, eine Bühne und die Überzeugung, dass eine Bigband genauso laut, 
+                    roh und energetisch sein kann wie ein Club. Wir schreiben eigene Musik — keine Standards, keine Covers —
+                    und entwickeln daraus Auftritte, die irgendwo zwischen Konzert und Rave landen.</p>
+                <p>Das Herzstück ist der Beat. Drums, E-Bass, Keys und Elektronik bauen einen Groove, der trägt —
+                    darüber schichten sich Bläser, Gitarre und Stimmen, die improvisieren, reagieren, eskalieren.
+                    Was entsteht, ist jedes Mal anders: die Energie des Raums, des Publikums, des Moments formt den Abend mit.
                 </p>
-                <p>Wir wagten einen Schritt und gründeten uns — eine Bigband, in der wir uns auf Augenhöhe begegnen.
-                    Durch
-                    unsere vielfältige, geschlechtsgemischte Besetzung gestalten wir den Wandel in der deutschen
-                    Jazz-Szene mit
-                    und vertreten sichtbar FLINTA*-Personen in allen Gruppen.</p>
+                <p>Wir sind eine Band auf Augenhöhe — divers besetzt, selbst organisiert, FLINTA&ast;-sichtbar in jeder Sektion.
+                    Was uns antreibt, ist nicht Nostalgie für eine vergangene Jazzära, sondern die Frage,
+                    was eine Bigband heute sein kann. Die Antwort spielen wir euch live.</p>
             </div>
             <div class="ueber-images fade-in">
                 <img src="images/regensburg25/Pascale.jpg" alt="Hester Bigband Gruppenportrait" />
@@ -135,9 +159,8 @@
 
                 <div class="concert-list">
                     <div class="concert-item">
-                        <span class="concert-date">09.05.</span>
-                        <span class="concert-name"><a target="_blank"
-                                href="https://www.neustadtkultur.de/neustadtnacht/hester/">Neustadtnacht</a></span>
+                        <span class="concert-date" style="color:var(--grey)">09.05.</span>
+                        <span class="concert-name" style="color:var(--grey)">Neustadtnacht</span>
                         <button class="concert-gallery-btn" onclick="openEventGallery('images/neustadt26')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                               <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -148,9 +171,8 @@
                         </button>
                     </div>
                     <div class="concert-item">
-                        <span class="concert-date">13.05.</span>
-                        <span class="concert-name"><a target="_blank"
-                                href="https://www.kunstundkulturbastei.de/news/#section-content-with-grid-5619f877-8b29-4e70-9ede-a8884e9bc90e">Ingolstadt</a></span>
+                        <span class="concert-date" style="color:var(--grey)">13.05.</span>
+                        <span class="concert-name" style="color:var(--grey)">Ingolstadt</span>
                         <button class="concert-gallery-btn" onclick="openEventGallery('images/ingolstadt26')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                               <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -194,11 +216,9 @@
                 <p class="past-year" style="margin-top:3rem">2025</p>
                 <div class="concert-list">
                     <div class="concert-item">
-                        <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
                         <span class="concert-name" style="color:var(--grey)">Kemptener Jazzfrühling</span>
                     </div>
                     <div class="concert-item">
-                        <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
                         <span class="concert-name" style="color:var(--grey)">Jazzweekend Regensburg</span>
                         <button class="concert-gallery-btn" onclick="openEventGallery('images/regensburg25')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -214,7 +234,6 @@
                 <p class="past-year">2024</p>
                 <div class="concert-list">
                     <div class="concert-item">
-                        <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
                         <span class="concert-name" style="color:var(--grey)">Clubnacht im Cityclub Augsburg</span>
                         <button class="concert-gallery-btn" onclick="openEventGallery('images/augsburg24')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -226,7 +245,6 @@
                         </button>
                     </div>
                     <div class="concert-item">
-                        <span class="concert-date" style="font-size:1.1rem;color:var(--grey)">—</span>
                         <span class="concert-name" style="color:var(--grey)">Landesgartenschau in Wangen</span>
                     </div>
                 </div>
@@ -343,19 +361,71 @@
             <div class="divider" style="margin:2rem auto;"></div>
             <p>Booking-Anfragen, Presseinfos oder einfach Hallo — wir freuen uns von euch zu hören.</p>
             <a class="big-email" href="mailto:booking@hester.band">booking@hester.band</a>
-            <div class="contact-links" style="margin-top:3rem;">
-                <a class="contact-link" href="https://hester.band" target="_blank">
-                    <span class="contact-link-label">Website</span>
-                    <span class="contact-link-value">hester.band</span>
-                </a>
-                <a class="contact-link" href="https://instagram.com/hester_bigband" target="_blank">
-                    <span class="contact-link-label">Instagram</span>
-                    <span class="contact-link-value">@hester_bigband</span>
-                </a>
-                <a class="contact-link" href="https://youtube.com/@Hester-band" target="_blank">
-                    <span class="contact-link-label">YouTube</span>
-                    <span class="contact-link-value">@Hester-band</span>
-                </a>
+
+            <!-- Social icons -->
+            <div class="icon-link-group" style="margin-top:3rem;">
+                <p class="section-label" style="margin-bottom:1.2rem;">Folgt uns</p>
+                <div class="icon-links">
+                    <a class="icon-link" href="https://hester.band" target="_blank" title="Linktree">
+                        <!-- Link/tree icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                        <span>Linktree</span>
+                    </a>
+                    <a class="icon-link" href="https://instagram.com/hester_bigband" target="_blank" title="Instagram">
+                        <!-- Instagram icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <circle cx="12" cy="12" r="4"/>
+                            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span>Instagram</span>
+                    </a>
+                    <a class="icon-link youtube" href="https://youtube.com/@Hester-band" target="_blank" title="YouTube">
+                        <!-- YouTube icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                            <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Streaming icons -->
+            <div class="icon-link-group" style="margin-top:2rem;">
+                <p class="section-label" style="margin-bottom:1.2rem;">Hört uns</p>
+                <div class="icon-links">
+                    <a class="icon-link spotify" href="https://open.spotify.com/artist/6nxAABMZhCO0QtxF3NadpL" target="_blank" title="Spotify">
+                        <!-- Spotify icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M7.5 14.5c2.8-1 5.7-.8 8 .7"/>
+                            <path d="M7 11.5c3.3-1.2 7-1 9.5.8"/>
+                            <path d="M7.5 8.5c3.8-1.3 7.8-.9 10.5 1.2"/>
+                        </svg>
+                        <span>Spotify</span>
+                    </a>
+                    <a class="icon-link tidal" href="https://tidal.com/artist/77012800" target="_blank" title="Tidal">
+                        <!-- Tidal icon (wave shape) -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M4 10c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0"/>
+                            <path d="M4 14c1.5-2 3-2 4.5 0s3 2 4.5 0 3-2 4.5 0"/>
+                        </svg>
+                        <span>Tidal</span>
+                    </a>
+                    <a class="icon-link" href="https://music.apple.com/de/artist/hester-bigband/1889553510" target="_blank" title="Apple Music">
+                        <!-- Apple Music icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M9 18V5l12-2v13"/>
+                            <circle cx="6" cy="18" r="3"/>
+                            <circle cx="18" cy="16" r="3"/>
+                        </svg>
+                        <span>Apple Music</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -386,7 +456,7 @@
         </button>
     </div>
 
-    <script defer src="static/index_video.js"></script>
+    <script defer src="static/index.js"></script>
 
 </body>
 

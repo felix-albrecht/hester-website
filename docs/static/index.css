@@ -111,6 +111,30 @@ nav.scrolled {
     transform: translateY(-7px) rotate(-45deg)
 }
 
+.nav-social {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-social-link {
+    color: var(--white);
+    opacity: .5;
+    transition: opacity 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.nav-social-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.nav-social-link:hover         { opacity: 1; color: var(--pink-light); }
+.nav-social-link.spotify:hover { color: #1DB954; }
+.nav-social-link.tidal:hover   { color: #ffffff; opacity: 1; }
+.nav-social-link.apple:hover   { color: var(--pink-light); }
+
 .mobile-menu {
     display: none;
     position: fixed;
@@ -688,37 +712,48 @@ section {
     margin-bottom: 3rem
 }
 
-.contact-links {
+.icon-link-group {
+    text-align: center;
+}
+
+.icon-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem
+    gap: 1rem;
 }
 
-.contact-link {
+.icon-link {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .4rem;
+    gap: .5rem;
     text-decoration: none;
-    transition: transform 0.2s
+    color: var(--white);
+    opacity: .6;
+    transition: opacity 0.2s, color 0.2s, transform 0.2s;
+    width: 72px;
 }
 
-.contact-link:hover {
-    transform: translateY(-3px)
+.icon-link:hover {
+    opacity: 1;
+    color: var(--pink-light);
+    transform: translateY(-3px);
 }
 
-.contact-link-label {
-    font-size: .62rem;
-    letter-spacing: .2em;
+.icon-link.spotify:hover  { color: #1DB954; }
+.icon-link.tidal:hover    { color: #ffffff; opacity: 1; }
+.icon-link.youtube:hover  { color: #FF0000; }
+
+.icon-link svg {
+    width: 28px;
+    height: 28px;
+}
+
+.icon-link span {
+    font-size: .6rem;
+    letter-spacing: .12em;
     text-transform: uppercase;
-    color: var(--pink)
-}
-
-.contact-link-value {
-    font-size: 1rem;
-    color: var(--white)
 }
 
 .big-email {

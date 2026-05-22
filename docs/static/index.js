@@ -1,8 +1,47 @@
+// Nav scroll
 const nav = document.getElementById('main-nav');
-window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60) });
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+});
 
-const heroBg = document.getElementById('hero-bg');
-setTimeout(() => heroBg.classList.add('loaded'), 100);
+// Video mute toggle
+let isMuted = true;
+let userUnmuted = false; // tracks if user deliberately turned sound on
+
+function setMuted(muted) {
+    const video = document.getElementById('hero-video');
+    if (!video) return;
+    video.muted = isMuted;
+    document.getElementById('icon-muted').style.display = isMuted ? 'block' : 'none';
+    document.getElementById('icon-unmuted').style.display = isMuted ? 'none' : 'block';
+    document.getElementById('mute-label').textContent = isMuted ? 'Ton an' : 'Ton aus';
+}
+
+function toggleMute() {
+    userUnmuted = isMuted; // if it was muted and user clicks, they're unmuting
+    setMuted(!isMuted);
+}
+
+// Keep mute button above footer when scrolled down
+const muteBtn = document.getElementById('mute-btn');
+const footer = document.querySelector('footer');
+
+function updateMuteBtnPosition() {
+    if (!muteBtn || !footer) return;
+    const footerTop = footer.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+    const defaultBottom = window.innerWidth <= 900 ? 24 : 35;
+
+    if (footerTop < windowHeight) {
+        muteBtn.style.bottom = (window.innerHeight - footerTop + 12) + 'px';
+    } else {
+        muteBtn.style.bottom = defaultBottom + 'px';
+    }
+}
+
+window.addEventListener('scroll', updateMuteBtnPosition, { passive: true });
+window.addEventListener('resize', updateMuteBtnPosition);
+updateMuteBtnPosition();
 
 function toggleMenu() {
     const burger = document.getElementById('burger');
