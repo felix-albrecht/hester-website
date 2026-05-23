@@ -53,6 +53,41 @@ window.addEventListener('scroll', updateMuteBtnPosition, { passive: true });
 window.addEventListener('resize', updateMuteBtnPosition);
 updateMuteBtnPosition();
 
+// Mute hero video when YouTube or Spotify embeds are played
+window.addEventListener('message', (e) => {
+    // YouTube sends info events when playback state changes
+    if (e.origin === 'https://www.youtube.com') {
+        try {
+            const data = JSON.parse(e.data);
+            // playerState 1 = playing
+            if (data.event === 'infoDelivery' && data.info?.playerState === 1) {
+                setMuted(true);
+            }
+        } catch (_) {}
+    }
+
+    // Spotify sends a message when playback starts
+    if (e.origin === 'https://open.spotify.com') {
+        try {
+            const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+            if (data.type === 'playback_update' && !data.payload?.isPaused) {
+                setMuted(true);
+            }
+        } catch (_) {}
+    }
+});
+
+// Tell YouTube iframe to start sending events
+const ytIframe = document.querySelector('#media iframe[src*="youtube.com"]');
+if (ytIframe) {
+    ytIframe.addEventListener('load', () => {
+        ytIframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'listening', id: 1 }),
+            'https://www.youtube.com'
+        );
+    });
+}
+
 function toggleMenu() {
     const burger = document.getElementById('burger');
     const menu = document.getElementById('mobile-menu');
