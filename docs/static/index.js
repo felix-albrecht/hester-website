@@ -100,13 +100,33 @@ const observer = new IntersectionObserver((entries) => { entries.forEach((e, i) 
 const galleryImgs = Array.from(document.querySelectorAll('.gallery-strip img'));
 let currentLightboxIndex = 0;
 
+// "marie.jpg" -> "Marie",  "hester_augsburg.jpg" -> "Hester Augsburg"
+function titleFromFilename(filename) {
+    return filename
+        .replace(/\.[^.]+$/, '')      // drop extension
+        .replace(/\d+$/, '')          // drop trailing digits (Silas2 -> Silas)
+        .replace(/[_-]+/g, ' ')       // underscores/dashes -> spaces
+        .trim()
+        .replace(/\b\w/g, c => c.toUpperCase());
+}
+
 // Event gallery data — add filenames for each event folder
 async function openEventGallery(folder) {
     try {
         const res = await fetch(folder + '/index.json');
-        const filenames = await res.json();
+        const data = await res.json();
+
+        // supports both the new object format and a plain array
+        const filenames = Array.isArray(data) ? data : data.images;
+        const credit    = Array.isArray(data) ? '' : (data.credit || '');
         if (!filenames || filenames.length === 0) return;
-        eventGalleryImages = filenames.map(f => folder + '/' + f);
+
+        eventGalleryImages = filenames.map(f => ({
+            src: folder + '/' + f,
+            title: titleFromFilename(f),
+            credit: credit
+        }));
+
         currentLightboxIndex = 0;
         showLightboxImage(eventGalleryImages[0]);
         updateLightboxCounter();
@@ -120,8 +140,11 @@ async function openEventGallery(folder) {
 let eventGalleryImages = [];
 
 function openLightbox(src) {
-    // build gallery from the strip images
-    eventGalleryImages = galleryImgs.map(img => img.src);
+    eventGalleryImages = galleryImgs.map(img => ({
+        src: img.src,
+        title: titleFromFilename(img.src.split('/').pop()),
+        credit: img.dataset.credit || ''
+    }));
     currentLightboxIndex = galleryImgs.findIndex(img => img.src === src);
     showLightboxImage(eventGalleryImages[currentLightboxIndex]);
     updateLightboxCounter();
@@ -164,8 +187,11 @@ strip.addEventListener('scroll', () => {
 // Start in the middle so both directions work immediately
 strip.scrollLeft = strip.scrollWidth / 2;
 
-function showLightboxImage(src) {
-    document.getElementById('lightbox-img').src = src;
+function showLightboxImage(item) {
+    document.getElementById('lightbox-img').src = item.src;
+    document.getElementById('lightbox-img').alt = item.title;
+    document.getElementById('lightbox-title').textContent = item.title;
+    document.getElementById('lightbox-credit').textContent = item.credit;
 }
 
 function updateLightboxCounter() {

@@ -783,6 +783,14 @@ footer p {
     letter-spacing: .05em
 }
 
+.lightbox-stage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .9rem;
+    max-width: 90vw;
+}
+
 .lightbox {
     display: none;
     position: fixed;
@@ -799,8 +807,30 @@ footer p {
 
 .lightbox img {
     max-width: 90vw;
-    max-height: 90vh;
+    max-height: 78vh;
     object-fit: contain
+}
+
+.lightbox-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .3rem;
+    text-align: center;
+}
+
+#lightbox-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--white);
+}
+
+#lightbox-credit {
+    font-size: .62rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgb(245 240 236 / .4);
 }
 
 .lightbox-close {
@@ -889,7 +919,7 @@ footer p {
 
 .lightbox-counter {
     position: absolute;
-    bottom: 1.5rem;
+    bottom: .6rem;
     left: 50%;
     transform: translateX(-50%);
     font-size: .68rem;

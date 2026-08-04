@@ -215,15 +215,15 @@
 
     <!-- GALLERY STRIP -->
     <div class="gallery-strip">
-        <img src="images/Saal.jpg" alt="Hester Konzertsaal" onclick="openLightbox(this.src)" />
-        <img src="images/regensburg25/Nico2.jpg" alt="Nico Regensburg" onclick="openLightbox(this.src)" />
-        <img src="images/Keller.jpg" alt="Hester Heizungskeller" onclick="openLightbox(this.src)" />
-        <img src="images/regensburg25/Michi.jpg" alt="Michi Regensburg" onclick="openLightbox(this.src)" />
-        <img src="images/augsburg24/Silas1.jpg" alt="Silas Augsburg" onclick="openLightbox(this.src)" />
-        <img src="images/augsburg24/Treppe2.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" />
-        <img src="images/augsburg24/Treppe1.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" />
-        <img src="images/regensburg25/Voices.jpg" alt="Vocal Section Regensburg" onclick="openLightbox(this.src)" />
-        <img src="images/augsburg24/Noten.jpg" alt="Noten Augsburg" onclick="openLightbox(this.src)" />
+        <img src="images/Saal.jpg" alt="Hester Konzertsaal" onclick="openLightbox(this.src)" data-credit="Foto: Jakob Marsmann" />
+        <img src="images/regensburg25/Nico2.jpg" alt="Nico Regensburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
+        <img src="images/Keller.jpg" alt="Hester Heizungskeller" onclick="openLightbox(this.src)" data-credit="Foto: Jakob Marsmann" />
+        <img src="images/regensburg25/Michi.jpg" alt="Michi Regensburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
+        <img src="images/augsburg24/Silas1.jpg" alt="Silas Augsburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
+        <img src="images/augsburg24/Treppe2.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
+        <img src="images/augsburg24/Treppe1.jpg" alt="Hester Augsburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
+        <img src="images/regensburg25/Voices.jpg" alt="Vocal Section Regensburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
+        <img src="images/augsburg24/Noten.jpg" alt="Noten Augsburg" onclick="openLightbox(this.src)" data-credit="Foto: Silas Isenmann" />
     </div>
 
     <!-- KONZERTE -->
@@ -518,7 +518,13 @@
                 <path d="M15 18l-6-6 6-6" />
             </svg>
         </button>
-        <img id="lightbox-img" src="" alt="" />
+        <div class="lightbox-stage">
+            <img id="lightbox-img" src="" alt="" />
+            <div class="lightbox-caption">
+                <span id="lightbox-title"></span>
+                <span id="lightbox-credit"></span>
+            </div>
+        </div>
         <button class="lightbox-arrow lightbox-arrow-right" onclick="event.stopPropagation(); lightboxNav(1)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                 <path d="M9 18l6-6-6-6" />
